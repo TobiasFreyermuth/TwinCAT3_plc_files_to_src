@@ -16,8 +16,8 @@ if "-" in version:
     v, i, s = version.split("-")
     version = v + "+" + i + ".git." + s
 
-assert "-" not in version
-assert "." in version
+#assert "-" not in version
+#assert "." in version
 
 assert os.path.isfile("src/version.py")
 with open("src/VERSION", "w", encoding="utf-8") as fh:
