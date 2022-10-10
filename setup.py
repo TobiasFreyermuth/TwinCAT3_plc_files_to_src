@@ -19,7 +19,7 @@ if "-" in version:
 #assert "-" not in version
 #assert "." in version
 
-assert os.path.isfile("src/version.py")
+#assert os.path.isfile("src/version.py")
 with open("src/VERSION", "w", encoding="utf-8") as fh:
     fh.write("%s\n" % version)
 
@@ -50,7 +50,7 @@ setup(
     py_modules=['TwinCAT3_plc_files_to_src'],
     package_dir={'': 'src'},
     packages=find_packages("src"),
-    #package_data={"TwinCAT3_plc_files_to_src": ["VERSION"]},
+    package_data={"TwinCAT3_plc_files_to_src": ["VERSION"]},
     include_package_data=True,
     long_description_content_type='text/markdown',
     long_description=long_description,
