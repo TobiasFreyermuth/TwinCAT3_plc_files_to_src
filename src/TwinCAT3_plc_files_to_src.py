@@ -64,13 +64,14 @@ def get_src_str_from_dut(file_path):
     return root.find('./DUT/Declaration').text if root.find('./DUT/Declaration') is not None else ''
 
 
-if __name__ == '__main__':
-    src_folder = r'C:\Users\freyermu\Documents\FrameworkLib'
-    dst_folder = r'C:\Users\freyermu\Documents\TcHAL_stats\src'
+def get_sources_of_project(project_path):
+    """
 
-    src_str = ''
+    :param project_path: absolute path to the TwinCAT proejct folder
+    :return:
+    """
     for file_ending in ['*.TcIO', '*.TcDUT', '*.TcGVL', '*.TcPOU']:
-        for path in Path(src_folder).rglob(file_ending):
+        for path in Path(project_path).rglob(file_ending):
             match file_ending:
                 case '*.TcDUT':
                     src_str = get_src_str_from_dut(path)
@@ -80,10 +81,25 @@ if __name__ == '__main__':
                     src_str = get_src_str_from_pou(path)
                 case '*.TcIO':
                     src_str = ''
+                case _:
+                    src_str = ''
 
-            file_path = str(path).replace(src_folder, dst_folder).replace(file_ending[1:], '.st')
-            folder = file_path.replace(file_path.split('\\')[-1], '')
-            Path(folder).mkdir(parents=True, exist_ok=True)
+            tmp = path.relative_to(project_path)
+            pou_name = tmp.name.replace(file_ending[1:], '')
+            sub_folder_path = str(tmp).split(pou_name)[0]
 
-            with open(file_path, 'w', encoding="utf-8") as file:
-                file.write(src_str)
+            yield pou_name, sub_folder_path, src_str
+
+
+def create_source_files_of_project(project_path, destination_path):
+    """
+
+    :param project_path:
+    :param destination_path:
+    :return:
+    """
+    for file_name, sub_folder, src_str in get_sources_of_project(src_folder):
+        dst_folder = f'{destination_path}/{sub_folder}'
+        Path(dst_folder).mkdir(parents=True, exist_ok=True)
+        with open(f'{dst_folder}/{file_name}.st', 'w', encoding="utf-8") as file:
+            file.write(src_str)
