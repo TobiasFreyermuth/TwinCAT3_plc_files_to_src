@@ -31,7 +31,7 @@ with open("README.md", "r", encoding="utf-8") as fh:
 
 setup(
     name='TwinCAT3_plc_files_to_src',
-    version=version,
+    version='0.0.8',
     description='desc',
     url='https://github.com/TobiasFreyermuth/TwinCAT3_plc_files_to_src',
     author='Tobias Freyermuth',
