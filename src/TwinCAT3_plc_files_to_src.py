@@ -20,7 +20,7 @@ def get_property_src_str_list(root):
         setter_dec = m.find('./Set/Declaration').text if m.find('./Set/Declaration') is not None else ''
         setter_imp = m.find('./Set/Implementation/ST').text if m.find('./Set/Implementation/ST') is not None else ''
 
-        properties.append(f'\n{dec}\n{getter_dec}\n{getter_imp}\n{setter_dec}\n{setter_imp}\nEND_PROPERTY')
+        properties.append(f'\n{dec}\nPROPERTY_GETTER\n{getter_dec}\n{getter_imp}\nEND_PROPERTY_GETTER\nPROPERTY_SETTER\n{setter_dec}\n{setter_imp}\nEND_PROPERTY_SETTER\nEND_PROPERTY')
     return properties
 
 
