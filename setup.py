@@ -22,6 +22,11 @@ if "-" in version:
 #assert os.path.isfile("src/version.py")
 
 print(f'\n====  Version: {version} ====\n')
+if version is None:
+    with open("src/VERSION", "r", encoding="utf-8") as fh:
+        version = fh.readline()
+    print(f'\n====  Version: {version} ====\n')
+
 with open("src/VERSION", "w", encoding="utf-8") as fh:
     fh.write("%s\n" % version)
 
@@ -31,7 +36,7 @@ with open("README.md", "r", encoding="utf-8") as fh:
 
 setup(
     name='TwinCAT3_plc_files_to_src',
-    version='0.0.8',
+    version='0.0.9',
     description='desc',
     url='https://github.com/TobiasFreyermuth/TwinCAT3_plc_files_to_src',
     author='Tobias Freyermuth',
