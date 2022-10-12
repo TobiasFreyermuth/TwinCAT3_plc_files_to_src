@@ -20,6 +20,8 @@ if "-" in version:
 #assert "." in version
 
 #assert os.path.isfile("src/version.py")
+
+print(f'\n====  Version: {version} ====\n')
 with open("src/VERSION", "w", encoding="utf-8") as fh:
     fh.write("%s\n" % version)
 
