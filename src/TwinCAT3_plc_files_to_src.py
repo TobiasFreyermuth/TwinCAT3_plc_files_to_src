@@ -72,17 +72,16 @@ def get_sources_of_project(project_path):
     """
     for file_ending in ['*.TcIO', '*.TcDUT', '*.TcGVL', '*.TcPOU']:
         for path in Path(project_path).rglob(file_ending):
-            match file_ending:
-                case '*.TcDUT':
-                    src_str = get_src_str_from_dut(path)
-                case '*.TcGVL':
-                    src_str = get_src_str_from_gvl(path)
-                case '*.TcPOU':
-                    src_str = get_src_str_from_pou(path)
-                case '*.TcIO':
-                    src_str = ''
-                case _:
-                    src_str = ''
+            if file_ending ==  '*.TcDUT':
+                src_str = get_src_str_from_dut(path)
+            elif file_ending == '*.TcGVL':
+                src_str = get_src_str_from_gvl(path)
+            elif file_ending == '*.TcPOU':
+                src_str = get_src_str_from_pou(path)
+            elif file_ending == '*.TcIO':
+                src_str = ''
+            else:
+                src_str = ''
 
             tmp = path.relative_to(project_path)
             pou_name = tmp.name.replace(file_ending[1:], '')
