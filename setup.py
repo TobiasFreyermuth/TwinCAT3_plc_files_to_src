@@ -13,7 +13,7 @@ setup(
     author='Tobias Freyermuth',
     author_email='Tobias.Freyermuth@posteo.net',
     license='MIT',
-    python_requires='>=3.10',
+    python_requires='>=3.7',
     install_requires=[
         'lxml>=4.0.0'
     ],
@@ -23,7 +23,7 @@ setup(
         'License :: OSI Approved :: MIT License',
         'Programming Language :: Python',
         'Programming Language :: Python :: 3 :: Only',
-        'Programming Language :: Python :: 3.10'
+        'Programming Language :: Python :: 3.7'
     ],
     py_modules=['TwinCAT3_plc_files_to_src'],
     package_dir={'': 'src'},
